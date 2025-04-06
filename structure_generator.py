@@ -30,8 +30,9 @@ class StructureGenerator:
                 print(f"Error creating directory {directory}: {e}")
                 return
         try:
-            with open(file, 'w') as f:
-                f.write(text)
+            if not os.path.exists(file):
+                with open(file, 'w') as f:
+                    f.write(text)
         except IOError as e:
             print(f"Error writing to {file}: {e}")
     

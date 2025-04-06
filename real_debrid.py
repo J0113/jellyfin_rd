@@ -79,7 +79,7 @@ class RealDebrid:
         self.sql("DELETE FROM torrents WHERE id = ?", (torrent_id,))
         self.sql("DELETE FROM files WHERE torrent_id = ?;", (torrent_id,))
 
-    def update_torrents(self, limit=3, page=1, force=False) -> list[Torrent]:
+    def update_torrents(self, limit=1000, page=1, force=False) -> list[Torrent]:
         torrent_ids = [torrent.id for torrent in self.get_torrents()]
 
         torrents = self.rd.torrents.get(limit=limit, page=page).json()

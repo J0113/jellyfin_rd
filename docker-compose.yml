@@ -1,7 +1,7 @@
 services:
   jellyfin_rd:
     container_name: jellyfin_rd
-    image: jellyfin_rd:latest
+    image: j0113/jellyfin_rd:latest
     environment:
       - RD_KEY=PASTE YOUR Real Debrid KEY HERE
       # - LIBRARY_PATH=/jellyfin-rd/library

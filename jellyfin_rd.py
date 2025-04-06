@@ -21,8 +21,8 @@ class JellyfinRD:
             self.rd.update_file_urls()
             self.rd.update_torrents()
             self.structure.sync()
-            print("Scheduled tasks finished, sleeping for 60s.")
-            sleep(60)
+            print("Scheduled tasks finished, sleeping for 120s.")
+            sleep(120)
 
 if __name__ == "__main__":
     RD_KEY = os.getenv("RD_KEY")

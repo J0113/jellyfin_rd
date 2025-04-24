@@ -1,24 +1,19 @@
-from real_debrid import RealDebrid
+from __future__ import annotations
 import os
 
 class StructureGenerator:
-    def __init__(self, rd: RealDebrid, path: str, base_url: str):
-        self.rd = rd
+    def __init__(self, path: str, base_url: str):
         self.path = os.path.abspath(path)
         self.base_url = base_url
         self.paths = []
 
-    def sync(self):
+    def sync(self, files: list[StructureGenerator.Item]):
         print(f"Starting sync to {self.path}")
-        torrents = self.rd.get_torrents()
         self.paths = []
-        for torrent in torrents:
-            for file in torrent.getFiles():
-                if file.path == "":
-                    continue
-                strm_file = os.path.join(self.path, f"{file.path}.strm")
-                self.paths.append(strm_file)
-                self.create_file_if_needed(strm_file, f"{self.base_url}/{file.tag}")
+        for file in files: 
+            strm_file = os.path.join(self.path, f"{file.path}.strm")
+            self.paths.append(strm_file)
+            self.create_file_if_needed(strm_file, f"{self.base_url}/{file.content}")
         self.remove_old_files()
 
     def create_file_if_needed(self, file: str, text: str):
@@ -30,9 +25,8 @@ class StructureGenerator:
                 print(f"Error creating directory {directory}: {e}")
                 return
         try:
-            if not os.path.exists(file):
-                with open(file, 'w') as f:
-                    f.write(text)
+            with open(file, 'w') as f:
+                f.write(text)
         except IOError as e:
             print(f"Error writing to {file}: {e}")
     
@@ -53,3 +47,8 @@ class StructureGenerator:
                     os.rmdir(root)
                 except OSError as e:
                     print(f"Error cleaning up {root}: {e}")
+    
+    class Item:
+        def __init__(self, path: str, content: str):
+            self.path = path
+            self.content = content

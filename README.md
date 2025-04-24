@@ -17,16 +17,9 @@ services:
   jellyfin_rd:
     container_name: jellyfin_rd
     image: j0113/jellyfin_rd:latest
-    environment:
-      - RD_KEY=PASTE YOUR Real Debrid KEY HERE
-      # - LIBRARY_PATH=/jellyfin-rd/library
-      # - PUBLIC_HOST=localhost
-      # - DB_PATH =./config/config.db
-      # - HOST=0.0.0.0
-      # - PORT=8080
     volumes:
-      - ./libary:/jellyfin-rd/library
-      - ./config:/jellyfin-rd/config
+      - ./libary:/jellyfin-rd/library                # Mount the libary folder on the docker host.
+      - ./settings.json:/jellyfin-rd/settings.json   # Mount the settings file
     ports:
       - "8080:8080"
 ```

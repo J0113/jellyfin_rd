@@ -1,0 +1,18 @@
+{
+    "jellyfin_rd": {
+        "network_interface": "0.0.0.0",
+        "port": 8080,
+        "public_host": "10.0.0.102"
+    },
+    "real_debrid": {
+        "api_key": "RD KEY HERE"
+    },
+    "jellyseerr": {
+        "api_key": "JELLYSEERR KEY HERE",
+        "endpoint": "http://localhost:5055"
+    },
+    "jellyfin": {
+        "api_key": "JELLYFIN KEY HERE",
+        "endpoint": "http://localhost:8096"
+    }
+}

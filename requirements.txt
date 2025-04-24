@@ -2,3 +2,4 @@ cheroot
 guessit
 requests
 WsgiDAV
+curl_cffi
